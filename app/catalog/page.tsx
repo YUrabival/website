@@ -13,6 +13,11 @@ const sortOptions = [
   { label: 'По названию', value: 'name' },
 ];
 
+interface Category {
+  id: string;
+  name: string;
+}
+
 export default function CatalogPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -115,7 +120,7 @@ export default function CatalogPage() {
                     Все категории
                   </button>
                 </li>
-                {categories.map(cat => (
+                {categories.map((cat: Category) => (
                   <li key={cat.id}>
                     <button
                       className={`block w-full text-left px-3 py-2 rounded-lg transition text-white ${category === cat.id ? 'bg-blue-600' : 'hover:bg-gray-800'}`}
