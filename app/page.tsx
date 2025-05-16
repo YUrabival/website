@@ -129,7 +129,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-2xl font-bold text-white mb-4">Категории запчастей</h2>
           <div className="flex flex-wrap gap-4">
-            {categories.map(cat => (
+            {categories.map((cat: { id: string; name: string }) => (
               <Link
                 key={cat.id}
                 href={`/catalog?category=${cat.id}`}
