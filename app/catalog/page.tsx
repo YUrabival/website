@@ -18,6 +18,20 @@ interface Category {
   name: string;
 }
 
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  description?: string;
+  image?: string;
+  stock: number;
+  categoryId: string;
+  brandId: string;
+  partNumber: string;
+  carBrand: string;
+  carModel: string;
+}
+
 export default function CatalogPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -162,7 +176,7 @@ export default function CatalogPage() {
           ) : products.length === 0 ? (
             <div className="col-span-4 text-center text-gray-400">Нет товаров</div>
           ) : (
-            products.map(product => (
+            products.map((product: Product) => (
               <ProductCard key={product.id} product={product} />
             ))
           )}
