@@ -31,8 +31,8 @@ export interface Product {
   carBrand: string;
   carModel: string;
   partNumber: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date | string;
+  updatedAt: Date | string;
   category?: Category;
   brand?: Brand;
   compatibilities?: VehicleCompatibility[];

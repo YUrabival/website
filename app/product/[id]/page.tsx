@@ -69,7 +69,7 @@ async function getSimilarProducts(product: Product): Promise<Product[]> {
     },
     take: 4,
   });
-  return products.map((p: Product) => ({
+  return products.map((p) => ({
     ...p,
     createdAt: p.createdAt.toISOString(),
     updatedAt: p.updatedAt.toISOString(),
