@@ -97,7 +97,7 @@ export default function AdminPanel() {
     });
 
   const handleRoleChange = async (userId: string, newRole: string) => {
-    const user = users.find(u => u.id === userId);
+    const user = users.find((u: User) => u.id === userId);
     if (!user) return;
     const res = await fetch(`/api/users?id=${userId}`, {
       method: "PUT",
