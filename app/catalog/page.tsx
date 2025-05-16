@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { ProductCard } from '@/components/ProductCard';
 import Link from 'next/link';
 import { api } from "~/utils/api";
+import { Product } from '@/types';
 
 const sortOptions = [
   { label: 'По умолчанию', value: 'default' },
@@ -16,20 +17,6 @@ const sortOptions = [
 interface Category {
   id: string;
   name: string;
-}
-
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  description?: string;
-  image?: string;
-  stock: number;
-  categoryId: string;
-  brandId: string;
-  partNumber: string;
-  carBrand: string;
-  carModel: string;
 }
 
 export default function CatalogPage() {
