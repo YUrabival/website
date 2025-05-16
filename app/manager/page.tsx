@@ -175,7 +175,7 @@ export default function ManagerPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.map(order => (
+                  {orders.map((order: Order) => (
                     <tr key={order.id} className="border-b border-[#23272f]">
                       <td className="px-4 py-2 text-white">{order.id}</td>
                       <td className="px-4 py-2 text-[#b0b8c1]">{new Date(order.createdAt).toLocaleDateString()}</td>
