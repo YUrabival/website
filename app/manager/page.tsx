@@ -182,7 +182,7 @@ export default function ManagerPage() {
                       <td className="px-4 py-2">
                         <select
                           value={order.status}
-                          onChange={e => handleStatusChange(order.id, e.target.value as 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled')}
+                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleStatusChange(order.id, e.target.value as 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled')}
                           className="rounded-lg bg-[#23272f] text-white px-2 py-1"
                         >
                           <option value="pending">Ожидает</option>
@@ -195,7 +195,7 @@ export default function ManagerPage() {
                       <td className="px-4 py-2 text-white">{order.total.toLocaleString()} ₽</td>
                       <td className="px-4 py-2 text-[#b0b8c1]">
                         <ul className="list-disc pl-4">
-                          {order.items.map(item => (
+                          {order.items.map((item: { id: string; name: string; price: number; quantity: number; product: { name: string } }) => (
                             <li key={item.id}>{item.product.name} — {item.quantity} шт.</li>
                           ))}
                         </ul>
@@ -216,13 +216,13 @@ export default function ManagerPage() {
                 type="text"
                 placeholder="Поиск по названию..."
                 value={search}
-                onChange={e => setSearch(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
                 className="rounded px-2 py-1 border border-gray-600 bg-[#181a20] text-white"
                 style={{ minWidth: 200 }}
               />
               <div className="flex items-center gap-2">
                 <span className="text-white">Сортировать:</span>
-                <select value={sortField} onChange={e => setSortField(e.target.value as 'name' | 'price')} className="rounded px-2 py-1">
+                <select value={sortField} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSortField(e.target.value as 'name' | 'price')} className="rounded px-2 py-1">
                   <option value="name">По названию</option>
                   <option value="price">По цене</option>
                 </select>
@@ -248,16 +248,16 @@ export default function ManagerPage() {
                 <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
                   <form onSubmit={handleAddProduct} className="bg-[#181a20] p-8 rounded-xl w-full max-w-lg space-y-4">
                     <h2 className="text-xl font-bold mb-2 text-white">Добавить товар</h2>
-                    <input required placeholder="Название" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
-                    <input required type="number" placeholder="Цена" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.price} onChange={e => setForm(f => ({ ...f, price: +e.target.value }))} />
-                    <input required placeholder="Описание" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} />
-                    <input required placeholder="URL картинки" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.image} onChange={e => setForm(f => ({ ...f, image: e.target.value }))} />
-                    <input required type="number" placeholder="В наличии (шт)" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.stock} onChange={e => setForm(f => ({ ...f, stock: +e.target.value }))} />
-                    <input required placeholder="ID категории" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.categoryId} onChange={e => setForm(f => ({ ...f, categoryId: e.target.value }))} />
-                    <input required placeholder="ID бренда" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.brandId} onChange={e => setForm(f => ({ ...f, brandId: e.target.value }))} />
-                    <input required placeholder="Артикул" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.partNumber} onChange={e => setForm(f => ({ ...f, partNumber: e.target.value }))} />
-                    <input placeholder="Марка авто" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.carBrand} onChange={e => setForm(f => ({ ...f, carBrand: e.target.value }))} />
-                    <input placeholder="Модель авто" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.carModel} onChange={e => setForm(f => ({ ...f, carModel: e.target.value }))} />
+                    <input required placeholder="Название" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm(f => ({ ...f, name: e.target.value }))} />
+                    <input required type="number" placeholder="Цена" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.price} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm(f => ({ ...f, price: +e.target.value }))} />
+                    <input required placeholder="Описание" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.description} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm(f => ({ ...f, description: e.target.value }))} />
+                    <input required placeholder="URL картинки" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.image} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm(f => ({ ...f, image: e.target.value }))} />
+                    <input required type="number" placeholder="В наличии (шт)" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.stock} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm(f => ({ ...f, stock: +e.target.value }))} />
+                    <input required placeholder="ID категории" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.categoryId} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm(f => ({ ...f, categoryId: e.target.value }))} />
+                    <input required placeholder="ID бренда" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.brandId} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm(f => ({ ...f, brandId: e.target.value }))} />
+                    <input required placeholder="Артикул" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.partNumber} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm(f => ({ ...f, partNumber: e.target.value }))} />
+                    <input placeholder="Марка авто" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.carBrand} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm(f => ({ ...f, carBrand: e.target.value }))} />
+                    <input placeholder="Модель авто" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={form.carModel} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm(f => ({ ...f, carModel: e.target.value }))} />
                     <div className="flex gap-2 justify-end">
                       <button type="button" className="px-4 py-2 rounded bg-gray-700 text-white" onClick={() => setShowAddModal(false)}>Отмена</button>
                       <button type="submit" className="px-4 py-2 rounded bg-green-600 text-white" disabled={loading}>{loading ? 'Добавление...' : 'Добавить'}</button>
@@ -269,16 +269,16 @@ export default function ManagerPage() {
                 <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
                   <form onSubmit={handleUpdateProduct} className="bg-[#181a20] p-8 rounded-xl w-full max-w-lg space-y-4">
                     <h2 className="text-xl font-bold mb-2 text-white">Редактировать товар</h2>
-                    <input required placeholder="Название" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.name} onChange={e => setEditForm(f => f ? { ...f, name: e.target.value } : f)} />
-                    <input required type="number" placeholder="Цена" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.price} onChange={e => setEditForm(f => f ? { ...f, price: +e.target.value } : f)} />
-                    <input required placeholder="Описание" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.description} onChange={e => setEditForm(f => f ? { ...f, description: e.target.value } : f)} />
-                    <input required placeholder="URL картинки" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.image} onChange={e => setEditForm(f => f ? { ...f, image: e.target.value } : f)} />
-                    <input required type="number" placeholder="В наличии (шт)" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.stock} onChange={e => setEditForm(f => f ? { ...f, stock: +e.target.value } : f)} />
-                    <input required placeholder="ID категории" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.categoryId} onChange={e => setEditForm(f => f ? { ...f, categoryId: e.target.value } : f)} />
-                    <input required placeholder="ID бренда" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.brandId} onChange={e => setEditForm(f => f ? { ...f, brandId: e.target.value } : f)} />
-                    <input required placeholder="Артикул" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.partNumber} onChange={e => setEditForm(f => f ? { ...f, partNumber: e.target.value } : f)} />
-                    <input placeholder="Марка авто" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.carBrand} onChange={e => setEditForm(f => f ? { ...f, carBrand: e.target.value } : f)} />
-                    <input placeholder="Модель авто" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.carModel} onChange={e => setEditForm(f => f ? { ...f, carModel: e.target.value } : f)} />
+                    <input required placeholder="Название" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditForm(f => f ? { ...f, name: e.target.value } : f)} />
+                    <input required type="number" placeholder="Цена" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.price} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditForm(f => f ? { ...f, price: +e.target.value } : f)} />
+                    <input required placeholder="Описание" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.description} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditForm(f => f ? { ...f, description: e.target.value } : f)} />
+                    <input required placeholder="URL картинки" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.image} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditForm(f => f ? { ...f, image: e.target.value } : f)} />
+                    <input required type="number" placeholder="В наличии (шт)" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.stock} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditForm(f => f ? { ...f, stock: +e.target.value } : f)} />
+                    <input required placeholder="ID категории" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.categoryId} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditForm(f => f ? { ...f, categoryId: e.target.value } : f)} />
+                    <input required placeholder="ID бренда" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.brandId} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditForm(f => f ? { ...f, brandId: e.target.value } : f)} />
+                    <input required placeholder="Артикул" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.partNumber} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditForm(f => f ? { ...f, partNumber: e.target.value } : f)} />
+                    <input placeholder="Марка авто" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.carBrand} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditForm(f => f ? { ...f, carBrand: e.target.value } : f)} />
+                    <input placeholder="Модель авто" className="w-full border border-[#23272f] bg-[#23272f] text-white placeholder-gray-400 px-3 py-2 rounded" value={editForm.carModel} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditForm(f => f ? { ...f, carModel: e.target.value } : f)} />
                     <div className="flex gap-2 justify-end">
                       <button type="button" className="px-4 py-2 rounded bg-gray-700 text-white" onClick={() => setShowEditModal(false)}>Отмена</button>
                       <button type="submit" className="px-4 py-2 rounded bg-blue-600 text-white" disabled={loading}>{loading ? 'Сохранение...' : 'Сохранить'}</button>
