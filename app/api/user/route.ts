@@ -3,6 +3,16 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
+interface Address {
+  id: string;
+  isDefault: boolean;
+  street: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  country: string;
+}
+
 export async function PATCH(req: Request) {
   try {
     const session = await getServerSession(authOptions);
@@ -19,7 +29,7 @@ export async function PATCH(req: Request) {
       include: { addresses: true },
     });
     if (user) {
-      const defaultAddress = user.addresses.find(a => a.isDefault);
+      const defaultAddress = user.addresses.find((a: Address) => a.isDefault);
       if (defaultAddress) {
         addressesUpsert = [
           {
