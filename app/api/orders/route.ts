@@ -94,7 +94,7 @@ export async function POST(request: Request) {
       status: "PENDING",
       addressId,
       phoneNumber,
-      items: cartItems.map((item) => ({
+      items: cartItems.map((item: { productId: string; quantity: number; product: { price: number; name: string } }) => ({
         productId: item.productId,
         quantity: item.quantity,
         price: item.product.price,
